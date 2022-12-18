@@ -1,0 +1,29 @@
+export default {
+  name: 'VideoCameraSlashIcon',
+  
+  props: {
+    size: {
+      type: String,
+      default: '24',
+      validator: (s) => (!isNaN(s) || s.length >= 2 && !isNaN(s.slice(0, s.length -1)) && s.slice(-1) === 'x' )
+    }
+  },
+
+  functional: true,
+
+  render(h, ctx) {
+    const size = ctx.props.size.slice(-1) === 'x' 
+      ? ctx.props.size.slice(0, ctx.props.size.length -1) + 'em'
+      : parseInt(ctx.props.size) + 'px';
+
+    const attrs = ctx.data.attrs || {}
+    attrs.width = attrs.width || size
+    attrs.height = attrs.height || size
+    ctx.data.attrs = attrs
+  
+    return <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...ctx.data}>
+  <path d="M3.53 2.47a.75.75 0 00-1.06 1.06l18 18a.75.75 0 101.06-1.06l-18-18zM22.5 17.69c0 .471-.202.86-.504 1.124l-4.746-4.746V7.939l2.69-2.689c.944-.945 2.56-.276 2.56 1.06v11.38zM15.75 7.5v5.068L7.682 4.5h5.068a3 3 0 013 3zM1.5 7.5c0-.782.3-1.494.79-2.028l12.846 12.846A2.995 2.995 0 0112.75 19.5H4.5a3 3 0 01-3-3v-9z"/>
+</svg>
+
+  }
+}
